@@ -1,8 +1,8 @@
-# Define your item pipelines here
-#
-# Don't forget to add your pipeline to the ITEM_PIPELINES setting
-# See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
+class FavoriteItemPipeline(object):
 
-class FavoritesPipeline(object):
     def process_item(self, item, spider):
+        fields = ['rating', 'rating_all', 'rating_up', 'rating_down']
+        for field in fields:
+            if field not in item:
+                item[field] = None
         return item

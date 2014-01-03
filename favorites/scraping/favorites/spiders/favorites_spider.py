@@ -10,15 +10,13 @@ class HabraFavoritesSpider(BaseSpider):
     allowed_domains = ['habrahabr.ru']
     name = 'habra_favorites'
 
-    def __init__(self, user=None, *args, **kwargs):
-        if not user:
-            return
+    def __init__(self, username=None, *args, **kwargs):
         super(HabraFavoritesSpider, self).__init__(*args, **kwargs)
         self.base_url = 'http://' + self.allowed_domains[0]
         self.start_urls = [
-            '{base}/users/{user}/favorites/'.format(
-                base=self.base_url,
-                user=user,
+            '{base_url}/users/{user}/favorites/'.format(
+                base_url=self.base_url,
+                user=username,
             )
         ]
 

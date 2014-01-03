@@ -1,0 +1,1 @@
+from .favorites_spider import HabraFavoritesSpider

@@ -2,8 +2,7 @@ from scrapy.http import Request
 from scrapy.selector import Selector
 from scrapy.spider import BaseSpider
 
-
-from ..loaders import FavoriteItemLoader
+from habra_favorites.loaders import FavoriteItemLoader
 
 
 class HabraFavoritesSpider(BaseSpider):
@@ -27,7 +26,7 @@ class HabraFavoritesSpider(BaseSpider):
         for url in next_urls:
             yield Request(self.base_url + url, self.parse)
 
-        posts = sel.xpath('//div[@class="post shortcuts_item"]')
+        posts = sel.xpath('//div[contains(concat(" ", @class, " "), " post ")]')
         for post in posts:
             l = FavoriteItemLoader(selector=post)
 

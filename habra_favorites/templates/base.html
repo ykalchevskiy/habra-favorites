@@ -18,7 +18,8 @@
         var items = [
 // ITEMS
         ];
-        function makeTable(field) {
+
+        function makeTable(field, reverse) {
             var i, len = items.length,
                 el, main = document.getElementById('favorites');
 
@@ -34,6 +35,9 @@
                 }
                 return r[field] - l[field];
             });
+            if (reverse) {
+                items.reverse();
+            }
             main.innerHTML = '';
             for (i = 0; i < len; ++i) {
                 el = document.createElement('tr');
@@ -47,14 +51,23 @@
                 main.appendChild(el);
             }
         }
+
         function activateField(that, field) {
             var ths = document.getElementsByTagName('th'), i, len = ths.length;
 
-            for (i = 0; i < len; ++i) {
-                ths[i].className = '';
+            if (that.className === 'i-active') {
+                that.className = 'i-active q-reverse';
+                makeTable(field, true);
+            } else if (that.className === 'i-active q-reverse') {
+                that.className = 'i-active';
+                makeTable(field);
+            } else {
+                for (i = 0; i < len; ++i) {
+                    ths[i].className = '';
+                }
+                that.className = 'i-active';
+                makeTable(field);
             }
-            that.className = 'i-active';
-            makeTable(field);
         }
     </script>
 </head>

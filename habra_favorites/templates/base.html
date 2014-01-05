@@ -23,6 +23,15 @@
                 el, main = document.getElementById('favorites');
 
             items.sort(function(l, r) {
+                if (field === 'title') {
+                    if (r[field] === l[field]) {
+                        return 0;
+                    } else if (r[field] > l[field]) {
+                        return -1;
+                    } else {
+                        return 1;
+                    }
+                }
                 return r[field] - l[field];
             });
             main.innerHTML = '';
@@ -54,7 +63,7 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Пост</th>
+                <th onclick="activateField(this, 'title')">Пост</th>
                 <th onclick="activateField(this, 'rating')" class="i-active">Рейтинг</th>
                 <th onclick="activateField(this, 'count')">Добавления</th>
                 <th onclick="activateField(this, 'views')">Просмотры</th>

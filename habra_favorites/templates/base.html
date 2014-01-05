@@ -7,8 +7,11 @@
         th {
             cursor: pointer;
         }
+        th.i-active {
+            color: #6DA3BD;
+        }
         tbody tr:hover {
-            background-color: #fffbbb;
+            background-color: #D3E2F0;
         }
     </style>
     <script>
@@ -16,26 +19,33 @@
 // ITEMS
         ];
         function makeTable(field) {
-            var i, length = items.length,
-                el, innerEl,
-                main = document.getElementById('favorites');
+            var i, len = items.length,
+                el, main = document.getElementById('favorites');
 
             items.sort(function(l, r) {
                 return r[field] - l[field];
             });
             main.innerHTML = '';
-            for (i = 0; i < length; ++i) {
-                innerEl = '<td>' + (i + 1) + '</td>' +
-                        '<td><a href="' + items[i]['ref'] + '">' + items[i]['title'] + '</a></td>' +
-                        '<td>' + items[i]['rating'] + '</td>' +
-                        '<td>' + items[i]['count'] + '</td>' +
-                        '<td>' + items[i]['views'] + '</td>' +
-                        '<td>' + items[i]['comments'] + '</td>';
+            for (i = 0; i < len; ++i) {
                 el = document.createElement('tr');
-                el.innerHTML = innerEl;
+                el.innerHTML = '<td>' + (i + 1) + '</td>' +
+                               '<td><a href="' + items[i]['ref'] + '">' + items[i]['title'] + '</a></td>' +
+                               '<td>' + items[i]['rating'] + '</td>' +
+                               '<td>' + items[i]['count'] + '</td>' +
+                               '<td>' + items[i]['views'] + '</td>' +
+                               '<td>' + items[i]['comments'] + '</td>';
 
                 main.appendChild(el);
             }
+        }
+        function activateField(that, field) {
+            var ths = document.getElementsByTagName('th'), i, len = ths.length;
+
+            for (i = 0; i < len; ++i) {
+                ths[i].className = '';
+            }
+            that.className = 'i-active';
+            makeTable(field);
         }
     </script>
 </head>
@@ -45,10 +55,10 @@
             <tr>
                 <th>#</th>
                 <th>Пост</th>
-                <th onclick="makeTable('rating')">Рейтинг</th>
-                <th onclick="makeTable('count')">Добавления</th>
-                <th onclick="makeTable('views')">Просмотры</th>
-                <th onclick="makeTable('comments')">Комментарии</th>
+                <th onclick="activateField(this, 'rating')" class="i-active">Рейтинг</th>
+                <th onclick="activateField(this, 'count')">Добавления</th>
+                <th onclick="activateField(this, 'views')">Просмотры</th>
+                <th onclick="activateField(this, 'comments')">Комментарии</th>
             </tr>
         </thead>
         <tbody id="favorites">

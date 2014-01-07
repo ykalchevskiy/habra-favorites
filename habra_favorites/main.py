@@ -38,7 +38,7 @@ def parse():
     parser.add_argument('--version', action='version', version=get_version())
     parser.add_argument(
         '-f', '--format',
-        choices=['html', 'json'],
+        choices=['html', 'json', 'csv', 'xml'],
         dest='file_format',
         default='html',
         help='choose FORMAT of the result file',

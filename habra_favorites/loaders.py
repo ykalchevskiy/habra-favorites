@@ -25,7 +25,10 @@ def process_rating(value):
     try:
         return int(value)
     except ValueError:
-        return None
+        try:
+            return -int(value.lstrip(u'–'))
+        except ValueError:
+            return None
 
 
 def process_rating_all(group):

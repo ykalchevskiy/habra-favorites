@@ -10,6 +10,13 @@ from .items import FavoriteItem
 RATING_REGEX = re.compile(ur'Всего (\d+): ↑(\d+) и ↓(\d+)', re.UNICODE)
 
 
+def process_comments(value):
+    try:
+        return int(value)
+    except ValueError:
+        return 0
+
+
 def process_id_(value):
     return int(value.split('_')[-1])
 
@@ -40,4 +47,4 @@ class FavoriteItemLoader(XPathItemLoader):
     rating_down_in = MapCompose(process_rating_all(3))
     views_in = MapCompose(int)
     count_in = MapCompose(int)
-    comments_in = MapCompose(int)
+    comments_in = MapCompose(process_comments)

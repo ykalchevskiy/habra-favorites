@@ -7,7 +7,7 @@ from scrapy.contrib.loader.processor import MapCompose, TakeFirst
 from .items import FavoriteItem
 
 
-RATING_REGEX = re.compile(ur'Всего (\d+): ↑(\d+) и ↓(\d+)', re.UNICODE)
+RATING_REGEX = re.compile(ur'Всего (\d+): ↑([\.\d]+) и ↓([\.\d]+)', re.UNICODE)
 
 
 def process_comments(value):
@@ -35,7 +35,11 @@ def process_rating_all(group):
     def process(value):
         m = RATING_REGEX.match(value)
         if m:
-            return int(m.group(group))
+            # it may be float but we cast to int it anyway http://habrahabr.ru/post/110174/
+            try:
+                return int(m.group(group))
+            except ValueError:
+                return float(m.group(group))
     return process
 
 

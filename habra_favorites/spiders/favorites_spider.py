@@ -1,3 +1,5 @@
+from scrapy import log
+from scrapy.exceptions import CloseSpider
 from scrapy.http import Request
 from scrapy.selector import Selector
 from scrapy.spider import BaseSpider
@@ -7,6 +9,7 @@ from habra_favorites.loaders import FavoriteItemLoader
 
 class HabraFavoritesSpider(BaseSpider):
     allowed_domains = ['habrahabr.ru']
+    handle_httpstatus_list = [404]
     name = 'habra_favorites'
 
     def __init__(self, username=None, *args, **kwargs):
@@ -20,6 +23,11 @@ class HabraFavoritesSpider(BaseSpider):
         ]
 
     def parse(self, response):
+        if response.status == 404:
+            msg = 'There is no such user.'
+            self.log(msg, log.ERROR)
+            raise CloseSpider(msg)
+
         sel = Selector(response)
 
         next_urls = sel.xpath('//a[@id="next_page"]/@href').extract()

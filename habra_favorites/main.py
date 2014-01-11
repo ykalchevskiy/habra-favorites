@@ -1,7 +1,7 @@
 import argparse
 import os
 
-from scrapy import signals
+from scrapy import log, signals
 from scrapy.crawler import Crawler
 from scrapy.utils.project import ENVVAR, get_project_settings
 from twisted.internet import reactor
@@ -22,6 +22,7 @@ def run_spider(args):
 
     spider = HabraFavoritesSpider(username=username)
     crawler = Crawler(settings)
+    log.start(loglevel=log.ERROR, crawler=crawler)
     crawler.signals.connect(reactor.stop, signal=signals.spider_closed)
     crawler.configure()
     crawler.crawl(spider)

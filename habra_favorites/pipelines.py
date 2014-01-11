@@ -1,8 +1,10 @@
 class FavoriteItemPipeline(object):
 
+    def __init__(self):
+        self.fields = ['rating', 'rating_all', 'rating_up', 'rating_down']
+
     def process_item(self, item, spider):
-        fields = ['rating', 'rating_all', 'rating_up', 'rating_down']
-        for field in fields:
+        for field in self.fields:
             if field not in item:
                 item[field] = None
         return item

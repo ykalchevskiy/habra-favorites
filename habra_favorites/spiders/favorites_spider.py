@@ -2,12 +2,12 @@ from scrapy import log
 from scrapy.exceptions import CloseSpider
 from scrapy.http import Request
 from scrapy.selector import Selector
-from scrapy.spider import BaseSpider
+from scrapy.spider import Spider
 
-from habra_favorites.loaders import FavoriteItemLoader
+from ..loaders import FavoriteItemLoader
 
 
-class HabraFavoritesSpider(BaseSpider):
+class HabraFavoritesSpider(Spider):
     allowed_domains = ['habrahabr.ru']
     handle_httpstatus_list = [404]
     name = 'habra_favorites'

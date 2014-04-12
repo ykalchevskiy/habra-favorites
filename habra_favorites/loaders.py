@@ -1,7 +1,7 @@
 # coding: utf-8
 import re
 
-from scrapy.contrib.loader import XPathItemLoader
+from scrapy.contrib.loader import ItemLoader
 from scrapy.contrib.loader.processor import MapCompose, TakeFirst
 
 from .items import FavoriteItem
@@ -43,7 +43,7 @@ def process_rating_all(group):
     return process
 
 
-class FavoriteItemLoader(XPathItemLoader):
+class FavoriteItemLoader(ItemLoader):
     default_item_class = FavoriteItem
     default_output_processor = TakeFirst()
 

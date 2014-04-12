@@ -7,7 +7,7 @@ from scrapy.utils.project import ENVVAR, get_project_settings
 from twisted.internet import reactor
 
 from . import get_version
-from spiders.favorites_spider import HabraFavoritesSpider
+from .spiders.favorites_spider import HabraFavoritesSpider
 
 
 def run_spider(args):

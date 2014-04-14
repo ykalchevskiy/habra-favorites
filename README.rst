@@ -11,7 +11,7 @@ HabraFavorites
 ---------
 
 Приложение сделано с помощью `Scrapy <http://www.scrapy.org>`_. 
-Для полноценной работы Scrapy лучше всего обратиться к соответствующей `инструкции <http://doc.scrapy.org/en/0.20/intro/install.html#pre-requisites>`_. 
+Для полноценной работы Scrapy лучше всего обратиться к соответствующей `инструкции <http://doc.scrapy.org/en/latest/intro/install.html#pre-requisites>`_. 
 Обратите внимание, что требуется **Python 2.7**, ветка 3.x не поддерживается.
 После настройки для Scrapy выполните:
 

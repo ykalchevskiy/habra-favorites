@@ -1,6 +1,8 @@
 HabraFavorites
 ==============
 
+.. image:: http://beta.hstor.org/files/24c/1d3/0d6/24c1d30d62d84d7eb7fb9647d6a0e960.png
+   :alt: Статистика
 
 Статистика избранных статей с сайта `Хабрахабр <http://www.habrahabr.ru>`_ в виде HTML страницы или данных в различных форматах.
 

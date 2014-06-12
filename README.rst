@@ -1,6 +1,11 @@
 HabraFavorites
 ==============
 
+.. image:: https://gemnasium.com/ykalchevskiy/habra-favorites.png
+   :alt: Dependency Status
+   :target: https://gemnasium.com/ykalchevskiy/habra-favorites
+
+
 .. image:: http://beta.hstor.org/files/24c/1d3/0d6/24c1d30d62d84d7eb7fb9647d6a0e960.png
    :alt: Статистика
 

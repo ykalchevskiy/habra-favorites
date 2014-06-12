@@ -2,9 +2,9 @@ HabraFavorites
 ==============
 
 
-.. image:: https://badge.fury.io/py/habra-favorites.svg
+.. image:: https://badge.fury.io/py/habra-favorites.png
     :alt: Последняя версия
-    :target: http://badge.fury.io/py/habra-favorites
+    :target: https://pypi.python.org/pypi/habra-favorites/
 
 .. image:: https://pypip.in/download/habra-favorites/badge.png
     :alt: Загрузки
@@ -74,5 +74,6 @@ HabraFavorites
 To-do
 -------
 
+* Badges or shields: https://travis-ci.org/, https://coveralls.io/, http://shields.io/ .
 * Добавить вывод информации о парсинге.
 * Изменить лицензию на BSD :)

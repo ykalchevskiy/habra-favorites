@@ -1,13 +1,25 @@
 HabraFavorites
 ==============
 
+.. image:: https://pypip.in/version/habra-favorites/badge.png
+    :alt: Последняя версия
+    :target: https://pypi.python.org/pypi/habra-favorites/
+
+.. image:: https://pypip.in/download/habra-favorites/badge.png
+    :alt: Загрузки
+    :target: https://pypi.python.org/pypi/habra-favorites/
+
 .. image:: https://gemnasium.com/ykalchevskiy/habra-favorites.png
-   :alt: Dependency Status
-   :target: https://gemnasium.com/ykalchevskiy/habra-favorites
+    :alt: Состояние зависимостей
+    :target: https://gemnasium.com/ykalchevskiy/habra-favorites
+
+.. image:: https://pypip.in/license/habra-favorites/badge.png
+    :alt: Лицензия
+    :target: https://pypi.python.org/pypi/habra-favorites/
 
 
 .. image:: http://beta.hstor.org/files/24c/1d3/0d6/24c1d30d62d84d7eb7fb9647d6a0e960.png
-   :alt: Статистика
+    :alt: Статистика
 
 Статистика избранных статей с сайта `Хабрахабр <http://www.habrahabr.ru>`_ в виде HTML страницы или данных в различных форматах.
 

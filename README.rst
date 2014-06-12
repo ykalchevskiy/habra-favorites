@@ -1,9 +1,10 @@
 HabraFavorites
 ==============
 
-.. image:: https://pypip.in/version/habra-favorites/badge.png
+
+.. image:: https://badge.fury.io/py/habra-favorites.svg
     :alt: Последняя версия
-    :target: https://pypi.python.org/pypi/habra-favorites/
+    :target: http://badge.fury.io/py/habra-favorites
 
 .. image:: https://pypip.in/download/habra-favorites/badge.png
     :alt: Загрузки

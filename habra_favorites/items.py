@@ -6,6 +6,7 @@ class FavoriteItem(Item):
     id_ = Field()
     ref = Field()
     title = Field()
+    datetime = Field()
 
     # Статистика
     rating = Field()  # рейтинг

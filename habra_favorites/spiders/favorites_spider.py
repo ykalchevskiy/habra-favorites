@@ -41,6 +41,7 @@ class HabraFavoritesSpider(Spider):
             l.add_xpath('id_', '@id')
             l.add_xpath('ref', './/a[@class="post_title"]/@href')
             l.add_xpath('title', './/a[@class="post_title"]/text()')
+            l.add_xpath('datetime', './/div[@class="published"]/text()')
 
             l.add_xpath('rating', './/span[@class="score"]/text()')
             l.add_xpath('rating_all', './/span[@class="score"]/@title')

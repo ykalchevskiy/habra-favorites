@@ -24,7 +24,7 @@
                 el, main = document.getElementById('favorites');
 
             items.sort(function(l, r) {
-                if (field === 'title') {
+                if (field === 'title' || field == 'datetime') {
                     if (r[field] === l[field]) {
                         return 0;
                     } else if (r[field] > l[field]) {
@@ -46,7 +46,8 @@
                                '<td>' + items[i]['rating'] + '</td>' +
                                '<td>' + items[i]['count'] + '</td>' +
                                '<td>' + items[i]['views'] + '</td>' +
-                               '<td>' + items[i]['comments'] + '</td>';
+                               '<td>' + items[i]['comments'] + '</td>' +
+                               '<td>' + items[i]['datetime'] + '</td>';
 
                 main.appendChild(el);
             }
@@ -81,6 +82,7 @@
                 <th onclick="activateField(this, 'count')">Добавления</th>
                 <th onclick="activateField(this, 'views')">Просмотры</th>
                 <th onclick="activateField(this, 'comments')">Комментарии</th>
+                <th onclick="activateField(this, 'datetime')">Дата</th>
             </tr>
         </thead>
         <tbody id="favorites">

@@ -36,5 +36,8 @@ setup(
     entry_points={
         'console_scripts': ['habra_favorites = habra_favorites.main:main']
     },
-    install_requires=['Scrapy==0.22.2']
+    install_requires=[
+        'Scrapy>=0.24,<0.25',
+        'service_identity>=1.0,<2.0',
+    ]
 )

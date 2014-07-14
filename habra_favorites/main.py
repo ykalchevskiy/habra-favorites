@@ -17,8 +17,8 @@ def run_spider(args):
 
     os.environ.setdefault(ENVVAR, 'habra_favorites.settings')
     settings = get_project_settings()
-    settings.overrides['FEED_FORMAT'] = file_format
-    settings.overrides['FEED_URI'] = file_name
+    settings.set('FEED_FORMAT', file_format)
+    settings.set('FEED_URI', file_name)
 
     spider = HabraFavoritesSpider(username=username)
     crawler = Crawler(settings)

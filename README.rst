@@ -22,7 +22,7 @@ HabraFavorites
 .. image:: http://beta.hstor.org/files/24c/1d3/0d6/24c1d30d62d84d7eb7fb9647d6a0e960.png
     :alt: Статистика
 
-Статистика избранных статей с сайта `Хабрахабр <http://www.habrahabr.ru>`_ в виде HTML страницы или данных в различных форматах.
+Статистика избранных статей с сайтов `Хабрахабр <http://habrahabr.ru>`_ и  `Geektimes <http://geektimes.ru>`_ в виде HTML страницы или данных в различных форматах.
 
 
 Установка
@@ -37,12 +37,6 @@ HabraFavorites
 
     $ pip install -U habra-favorites
 
-или 
-
-.. code-block:: bash
-
-    $ easy_install -U habra-favorites
-
 Протестировано на Ubuntu 12.04, на других UNIX/Linux системах тоже должно работать. Теоретически и на Windows :)
 
 
@@ -51,12 +45,13 @@ HabraFavorites
 
 .. code-block:: bash
 
-    $ habra_favorites [-h] [--version] [-f FORMAT] [-o NAME] username
+    $ habra_favorites [-h] [--version] [-d DOMAIN] [-f FORMAT] [-o NAME] username
 
 Один обязательный параметр -- *username*. Логин пользователя, чьи избранные статьи будут собраны. Это может быть как Ваш логин, так и логин любого другого пользователя. 
 
 Опции:
 
+* DOMAIN -- сайт: *habrahabr.ru* (по умолчанию), *geektimes.ru*;
 * FORMAT -- формат результата: *html* (по умолчанию), *json*, *csv*, *xml*;
 * NAME -- имя файла для сохранения: по умолчанию *favorites.html* .
 
@@ -74,6 +69,7 @@ HabraFavorites
 To-do
 -------
 
-* Badges or shields: https://travis-ci.org/, https://coveralls.io/, http://shields.io/ .
+* Badges/shields: https://travis-ci.org/, https://coveralls.io/, http://shields.io/ .
 * Добавить вывод информации о парсинге.
-* Изменить лицензию на BSD :)
+* Изменить лицензию на BSD (?).
+* Объединить результаты для сайтов (?).

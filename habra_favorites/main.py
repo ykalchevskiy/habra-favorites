@@ -12,6 +12,7 @@ from .spiders.favorites_spider import HabraFavoritesSpider
 
 def run_spider(args):
     username = args.username
+    domain = args.domain
     file_name = args.file_name
     file_format = args.file_format
 
@@ -20,7 +21,7 @@ def run_spider(args):
     settings.set('FEED_FORMAT', file_format)
     settings.set('FEED_URI', file_name)
 
-    spider = HabraFavoritesSpider(username=username)
+    spider = HabraFavoritesSpider(domain=domain, username=username)
     crawler = Crawler(settings)
     log.start(loglevel=log.ERROR, crawler=crawler)
     crawler.signals.connect(reactor.stop, signal=signals.spider_closed)
@@ -32,11 +33,19 @@ def run_spider(args):
 
 def parse():
     parser = argparse.ArgumentParser(
-        description='Process favorites posts from Habrahabr.ru'
+        description='Process favorites posts from Habrahabr.ru or Geektimes.ru'
     )
 
-    parser.add_argument('username', help='Nickname on Habrahabr.ru')
+    parser.add_argument('username', help='Nickname')
     parser.add_argument('--version', action='version', version=get_version())
+    parser.add_argument(
+        '-d', '--domain',
+        choices=['habrahabr.ru', 'geektimes.ru'],
+        dest='domain',
+        default='habrahabr.ru',
+        help='choose DOMAIN for scrapping',
+        metavar='DOMAIN',
+    )
     parser.add_argument(
         '-f', '--format',
         choices=['html', 'json', 'csv', 'xml'],

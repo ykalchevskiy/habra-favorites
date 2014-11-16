@@ -8,13 +8,13 @@ from ..loaders import FavoriteItemLoader
 
 
 class HabraFavoritesSpider(Spider):
-    allowed_domains = ['habrahabr.ru']
     handle_httpstatus_list = [404]
     name = 'habra_favorites'
 
-    def __init__(self, username=None, *args, **kwargs):
+    def __init__(self, domain, username, *args, **kwargs):
         super(HabraFavoritesSpider, self).__init__(*args, **kwargs)
-        self.base_url = 'http://' + self.allowed_domains[0]
+        self.allowed_domains = [domain]
+        self.base_url = 'http://' + domain
         self.start_urls = [
             '{base_url}/users/{user}/favorites/'.format(
                 base_url=self.base_url,

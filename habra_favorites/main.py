@@ -17,6 +17,7 @@ def run_spider(args):
     settings = get_project_settings()
     settings.set('FEED_FORMAT', file_format)
     settings.set('FEED_URI', file_name)
+    settings.set('FEED_STORE_EMPTY', True)
     settings.set('LOG_LEVEL', logging.ERROR)
 
     process = CrawlerProcess(settings)

@@ -2,11 +2,11 @@ HabraFavorites
 ==============
 
 
-.. image:: https://img.shields.io/pypi/v/habra__favorites.svg
+.. image:: https://img.shields.io/pypi/v/habra--favorites.svg
     :alt: Последняя версия
     :target: https://pypi.python.org/pypi/habra-favorites/
 
-.. image:: https://img.shields.io/pypi/dm/habra__favorites.svg
+.. image:: https://img.shields.io/pypi/dm/habra--favorites.svg
     :alt: Загрузки
     :target: https://pypi.python.org/pypi/habra-favorites/
 

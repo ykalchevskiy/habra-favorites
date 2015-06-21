@@ -1,3 +1,4 @@
+# Scrapy settings
 BOT_NAME = 'favorites'
 
 FEED_EXPORTERS = {
@@ -10,4 +11,5 @@ ITEM_PIPELINES = {
 
 SPIDER_MODULES = ['habra_favorites.spiders']
 
+# Project settings
 HABRA_FAVORITES_DOMAINS = ['habrahabr.ru', 'geektimes.ru', 'megamozg.ru']

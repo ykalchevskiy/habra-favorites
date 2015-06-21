@@ -14,7 +14,7 @@ setup(
     author='Yan Kalchevskiy',
     author_email='yan.kalchevskiy@gmail.ru',
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
         'License :: OSI Approved :: MIT License',
         'Operating System :: Unix',

@@ -2,8 +2,8 @@
 from datetime import datetime, timedelta
 import re
 
-from scrapy.contrib.loader import ItemLoader
-from scrapy.contrib.loader.processor import MapCompose, TakeFirst
+from scrapy.loader import ItemLoader
+from scrapy.loader.processors import MapCompose, TakeFirst
 
 from .items import FavoriteItem
 

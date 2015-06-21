@@ -1,8 +1,7 @@
-from scrapy import log
 from scrapy.exceptions import CloseSpider
 from scrapy.http import Request
 from scrapy.selector import Selector
-from scrapy.spider import Spider
+from scrapy.spiders import Spider
 
 from ..loaders import FavoriteItemLoader
 
@@ -25,7 +24,7 @@ class HabraFavoritesSpider(Spider):
     def parse(self, response):
         if response.status == 404:
             msg = 'There is no such user.'
-            self.log(msg, log.ERROR)
+            self.logger.error(msg)
             raise CloseSpider(msg)
 
         sel = Selector(response)

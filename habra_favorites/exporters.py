@@ -1,7 +1,7 @@
 # coding: utf-8
 import os
 
-from scrapy.contrib.exporter import JsonItemExporter
+from scrapy.exporters import JsonItemExporter
 
 
 class HtmlItemExporter(JsonItemExporter):

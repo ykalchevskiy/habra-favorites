@@ -1,13 +1,11 @@
 import argparse
+import logging
 import os
 
-from scrapy import log, signals
-from scrapy.crawler import Crawler
+from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import ENVVAR, get_project_settings
-from twisted.internet import reactor
 
 from . import get_version
-from .spiders.favorites_spider import HabraFavoritesSpider
 
 
 def run_spider(args):
@@ -20,15 +18,11 @@ def run_spider(args):
     settings = get_project_settings()
     settings.set('FEED_FORMAT', file_format)
     settings.set('FEED_URI', file_name)
+    settings.set('LOG_LEVEL', logging.ERROR)
 
-    spider = HabraFavoritesSpider(domain=domain, username=username)
-    crawler = Crawler(settings)
-    log.start(loglevel=log.ERROR, crawler=crawler)
-    crawler.signals.connect(reactor.stop, signal=signals.spider_closed)
-    crawler.configure()
-    crawler.crawl(spider)
-    crawler.start()
-    reactor.run()
+    process = CrawlerProcess(settings)
+    process.crawl('habra_favorites', username=username, domain=domain)
+    process.start()
 
 
 def parse():

@@ -9,3 +9,5 @@ ITEM_PIPELINES = {
 }
 
 SPIDER_MODULES = ['habra_favorites.spiders']
+
+HABRA_FAVORITES_DOMAINS = ['habrahabr.ru', 'geektimes.ru', 'megamozg.ru']

@@ -14,7 +14,6 @@ def run_spider(args):
     file_name = args.file_name
     file_format = args.file_format
 
-    os.environ.setdefault(ENVVAR, 'habra_favorites.settings')
     settings = get_project_settings()
     settings.set('FEED_FORMAT', file_format)
     settings.set('FEED_URI', file_name)
@@ -26,15 +25,19 @@ def run_spider(args):
 
 
 def parse():
-    parser = argparse.ArgumentParser(
-        description='Process favorites posts from Habrahabr.ru or Geektimes.ru'
+    settings = get_project_settings()
+    domains = settings['HABRA_FAVORITES_DOMAINS']
+
+    description = (
+        'Process favorites posts from ' + ', '.join(d.capitalize() for d in domains)
     )
+    parser = argparse.ArgumentParser(description=description)
 
     parser.add_argument('username', help='Nickname')
     parser.add_argument('--version', action='version', version=get_version())
     parser.add_argument(
         '-d', '--domain',
-        choices=['habrahabr.ru', 'geektimes.ru', 'megamozg.ru'],
+        choices=domains + ['all'],
         dest='domain',
         default='habrahabr.ru',
         help='choose DOMAIN for scrapping',
@@ -60,6 +63,7 @@ def parse():
 
 
 def main():
+    os.environ.setdefault(ENVVAR, 'habra_favorites.settings')
     run_spider(parse())
 
 

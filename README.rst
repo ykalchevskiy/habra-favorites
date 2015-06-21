@@ -67,4 +67,3 @@ To-do
 
 * Badges/shields: https://travis-ci.org/, https://coveralls.io/ .
 * Добавить вывод информации о парсинге.
-* Изменить лицензию на BSD (?).

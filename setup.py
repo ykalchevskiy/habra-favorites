@@ -23,7 +23,7 @@ setup(
     ],
     description='Sort your favorites posts from Habrahabr.ru',
     include_package_data=True,
-    keywords=['scrapy', 'habrahabr.ru'],
+    keywords=['scrapy', 'habrahabr.ru', 'geektimes.ru', 'megamozg.ru'],
     license='MIT',
     long_description=get_long_description(),
     packages=find_packages(),

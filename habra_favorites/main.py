@@ -40,7 +40,7 @@ def parse():
     parser.add_argument('--version', action='version', version=get_version())
     parser.add_argument(
         '-d', '--domain',
-        choices=['habrahabr.ru', 'geektimes.ru'],
+        choices=['habrahabr.ru', 'geektimes.ru', 'megamozg.ru'],
         dest='domain',
         default='habrahabr.ru',
         help='choose DOMAIN for scrapping',

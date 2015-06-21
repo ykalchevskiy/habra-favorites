@@ -47,7 +47,7 @@ HabraFavorites
 
 Опции:
 
-* DOMAIN -- сайт: *habrahabr.ru* (по умолчанию), *geektimes.ru*;
+* DOMAIN -- сайт: *habrahabr.ru* (по умолчанию), *geektimes.ru*, *megamozg.ru*;
 * FORMAT -- формат результата: *html* (по умолчанию), *json*, *csv*, *xml*;
 * NAME -- имя файла для сохранения: по умолчанию *favorites.html* .
 
@@ -63,7 +63,7 @@ HabraFavorites
 
 
 To-do
--------
+-----
 
 * Badges/shields: https://travis-ci.org/, https://coveralls.io/, http://shields.io/ .
 * Добавить вывод информации о парсинге.

@@ -1,4 +1,4 @@
-BOT_NAME = 'habra_favorites'
+BOT_NAME = 'favorites'
 
 FEED_EXPORTERS = {
     'html': 'habra_favorites.exporters.HtmlItemExporter',

@@ -6,12 +6,12 @@ from scrapy.spiders import Spider
 from ..loaders import FavoriteItemLoader
 
 
-class HabraFavoritesSpider(Spider):
+class FavoritesSpider(Spider):
     handle_httpstatus_list = [404]
-    name = 'habra_favorites'
+    name = 'favorites'
 
     def __init__(self, domain, username, *args, **kwargs):
-        super(HabraFavoritesSpider, self).__init__(*args, **kwargs)
+        super(FavoritesSpider, self).__init__(*args, **kwargs)
         self.allowed_domains = [domain]
         self.base_url = 'http://' + domain
         self.start_urls = [

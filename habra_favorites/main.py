@@ -21,7 +21,7 @@ def run_spider(args):
     settings.set('LOG_LEVEL', logging.ERROR)
 
     process = CrawlerProcess(settings)
-    process.crawl('habra_favorites', username=username, domain=domain)
+    process.crawl('favorites', username=username, domain=domain)
     process.start()
 
 

@@ -1,5 +1,3 @@
 include README.rst
 include LICENSE
-include requirements.txt
-include scrapy.cfg
 recursive-include habra_favorites/templates *

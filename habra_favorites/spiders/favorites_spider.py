@@ -38,7 +38,7 @@ class FavoritesSpider(Spider):
         for url in next_urls:
             yield Request(response.urljoin(url), self.parse)
 
-        posts = sel.xpath('//div[contains(concat(" ", @class, " "), " post ")]')
+        posts = sel.xpath(self._gen_query_with_contains('//div[{}]', 'post'))
         for post in posts:
             l = FavoriteItemLoader(selector=post)
 
@@ -47,12 +47,17 @@ class FavoritesSpider(Spider):
             l.add_xpath('title', './/a[@class="post_title"]/text()')
             l.add_xpath('datetime', './/div[@class="published"]/text()')
 
-            l.add_xpath('rating', './/span[@class="score"]/text()')
-            l.add_xpath('rating_all', './/span[@class="score"]/@title')
-            l.add_xpath('rating_up', './/span[@class="score"]/@title')
-            l.add_xpath('rating_down', './/span[@class="score"]/@title')
-            l.add_xpath('views', './/div[@class="pageviews"]/text()')
-            l.add_xpath('count', './/div[@class="favs_count"]/text()')
-            l.add_xpath('comments', './/div[@class="comments"]//span[@class="all"]/text()')
+            l.add_xpath('rating', self._gen_query_with_contains('.//span[{}]/text()', 'js-score'))
+            l.add_xpath('rating_all', self._gen_query_with_contains('.//span[{}]/@title', 'js-score'))
+            l.add_xpath('rating_up', self._gen_query_with_contains('.//span[{}]/@title', 'js-score'))
+            l.add_xpath('rating_down', self._gen_query_with_contains('.//span[{}]/@title', 'js-score'))
+            l.add_xpath('views', './/div[@class="views-count_post"]/text()')
+            l.add_xpath('count', self._gen_query_with_contains('.//span[{}]/text()', 'js-favs_count'))
+            l.add_xpath('comments', self._gen_query_with_contains('.//div[{}]/a/text()', 'post-comments'))
 
             yield l.load_item()
+
+    @staticmethod
+    def _gen_query_with_contains(query, klass):
+        query_contains = 'contains(concat(" ", @class, " "), " {} ")'.format(klass)
+        return query.format(query_contains)

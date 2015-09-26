@@ -46,6 +46,7 @@ class FavoritesSpider(Spider):
             l.add_xpath('ref', './/a[@class="post_title"]/@href')
             l.add_xpath('title', './/a[@class="post_title"]/text()')
             l.add_xpath('datetime', './/div[@class="published"]/text()')
+            l.add_xpath('author', './/a[@class="post-author__link"]', re='@(\w+)')
 
             l.add_xpath('rating', self._gen_query_with_contains('.//span[{}]/text()', 'js-score'))
             l.add_xpath('rating_all', self._gen_query_with_contains('.//span[{}]/@title', 'js-score'))

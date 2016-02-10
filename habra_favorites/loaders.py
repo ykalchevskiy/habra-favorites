@@ -103,6 +103,16 @@ def process_rating_all(group):
     return process
 
 
+def process_views(value):
+    try:
+        return int(value)
+    except ValueError:
+        if value.endswith('k'):
+            return int(value.rstrip('k').replace(',', '')) * 1000
+        else:
+            return None
+
+
 class FavoriteItemLoader(ItemLoader):
     default_item_class = FavoriteItem
     default_output_processor = TakeFirst()
@@ -113,6 +123,6 @@ class FavoriteItemLoader(ItemLoader):
     rating_all_in = MapCompose(process_rating_all(1))
     rating_up_in = MapCompose(process_rating_all(2))
     rating_down_in = MapCompose(process_rating_all(3))
-    views_in = MapCompose(int)
+    views_in = MapCompose(process_views)
     count_in = MapCompose(int)
     comments_in = MapCompose(process_comments)

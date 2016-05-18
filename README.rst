@@ -19,7 +19,7 @@ HabraFavorites
     :alt: Статистика
 
 Статистика избранных статей с сайтов
-`Хабрахабр <http://habrahabr.ru>`_, `Geektimes <http://geektimes.ru>`_, `Megamozg <http://megamozg.ru>`_
+`Хабрахабр <http://habrahabr.ru>`_, `Geektimes <http://geektimes.ru>`_
 в виде HTML-страницы или данных в различных форматах.
 
 
@@ -47,7 +47,7 @@ HabraFavorites
 
 Опции:
 
-* DOMAIN -- сайт: *habrahabr.ru* (по умолчанию), *geektimes.ru*, *megamozg.ru*, *all*;
+* DOMAIN -- сайт: *habrahabr.ru* (по умолчанию), *geektimes.ru*, *all*;
 * FORMAT -- формат результата: *html* (по умолчанию), *json*, *csv*, *xml*;
 * NAME -- имя файла для сохранения: по умолчанию *favorites.html* .
 

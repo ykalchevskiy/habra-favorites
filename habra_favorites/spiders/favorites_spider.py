@@ -43,11 +43,16 @@ class FavoritesSpider(Spider):
             l = FavoriteItemLoader(selector=post)
 
             l.add_xpath('id_', '@id')
-            l.add_xpath('ref', './/a[@class="post__title_link"]/@href')
-            l.add_xpath('title', './/a[@class="post__title_link"]/text()')
-            l.add_xpath('datetime', './/span[@class="post__time_published"]/text()')
-            l.add_xpath('author', './/a[@class="post-author__link"]', re='@(\w+)')
-
+            if post.xpath('./section[@class="article article_preview"]'):
+                l.add_xpath('ref', './/a[@class="megapost-head__title-link"]/@href')
+                l.add_xpath('title', './/a[@class="megapost-head__title-link"]/text()')
+                l.add_xpath('datetime', './/div[@class="megapost-head__meta "]//li[1]/text()')
+                l.add_xpath('author', './/a[@class="megapost-cover__blog-link"]/text()')
+            else:
+                l.add_xpath('ref', './/a[@class="post__title_link"]/@href')
+                l.add_xpath('title', './/a[@class="post__title_link"]/text()')
+                l.add_xpath('datetime', './/span[@class="post__time_published"]/text()')
+                l.add_xpath('author', './/a[@class="post-author__link"]', re='@(\w+)')
             l.add_xpath('rating', self._gen_query_with_contains('.//span[{}]/text()', 'js-score'))
             l.add_xpath('rating_all', self._gen_query_with_contains('.//span[{}]/@title', 'js-score'))
             l.add_xpath('rating_up', self._gen_query_with_contains('.//span[{}]/@title', 'js-score'))

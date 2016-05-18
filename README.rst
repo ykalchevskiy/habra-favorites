@@ -30,8 +30,9 @@ HabraFavorites
 
     $ pip install habra-favorites
 
-Приложение основано на фреймворке `Scrapy <http://www.scrapy.org>`_.
-При возникновении ошибок при установке обратитесь к `инструкции по установке Scrapy <http://doc.scrapy.org/en/latest/intro/install.html#pre-requisites>`_.
+Приложение основано на фреймворке `Scrapy <http://scrapy.org>`_.
+При возникновении ошибок при установке обратитесь к
+`инструкции по установке Scrapy <http://doc.scrapy.org/en/latest/intro/install.html#pre-requisites>`_.
 Обратите внимание, что требуется **Python 2.7**, ветка 3.x не поддерживается.
 
 

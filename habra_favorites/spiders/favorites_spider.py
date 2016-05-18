@@ -43,9 +43,9 @@ class FavoritesSpider(Spider):
             l = FavoriteItemLoader(selector=post)
 
             l.add_xpath('id_', '@id')
-            l.add_xpath('ref', './/a[@class="post_title"]/@href')
-            l.add_xpath('title', './/a[@class="post_title"]/text()')
-            l.add_xpath('datetime', './/div[@class="published"]/text()')
+            l.add_xpath('ref', './/a[@class="post__title_link"]/@href')
+            l.add_xpath('title', './/a[@class="post__title_link"]/text()')
+            l.add_xpath('datetime', './/span[@class="post__time_published"]/text()')
             l.add_xpath('author', './/a[@class="post-author__link"]', re='@(\w+)')
 
             l.add_xpath('rating', self._gen_query_with_contains('.//span[{}]/text()', 'js-score'))

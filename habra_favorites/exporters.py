@@ -11,11 +11,11 @@ class HtmlItemExporter(JsonItemExporter):
         super(HtmlItemExporter, self).__init__(file_, **kwargs)
         self.file.seek(os.SEEK_SET)
         self.file.truncate()
-        with open(os.path.join(os.path.dirname(__file__), 'templates', self.TEMPLATE)) as f:
+        with open(os.path.join(os.path.dirname(__file__), 'templates', self.TEMPLATE), encoding='utf-8') as f:
             self.file_start, self.file_finish = f.read().split('// ITEMS')
 
     def start_exporting(self):
-        self.file.write(self.file_start)
+        self.file.write(self.file_start.encode('utf-8'))
 
     def finish_exporting(self):
-        self.file.write(self.file_finish)
+        self.file.write(self.file_finish.encode('utf-8'))

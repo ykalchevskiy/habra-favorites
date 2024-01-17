@@ -1,6 +1,4 @@
 from scrapy.exceptions import CloseSpider
-from scrapy.http import Request
-from scrapy.selector import Selector
 from scrapy.spiders import Spider
 
 from ..loaders import FavoriteItemLoader
@@ -10,60 +8,47 @@ class FavoritesSpider(Spider):
     handle_httpstatus_list = [404]
     name = 'favorites'
 
-    def __init__(self, domain, username, *args, **kwargs):
+    def __init__(self, username, *args, **kwargs):
         super(FavoritesSpider, self).__init__(*args, **kwargs)
         self.allowed_domains = []
-        self._domain = domain
         self._username = username
 
     def start_requests(self):
-        all_domains = self.settings['HABRA_FAVORITES_DOMAINS']
-        self.allowed_domains = all_domains if self._domain == 'all' else [self._domain]
-        self.start_urls = ['http://{base_url}/users/{user}/favorites/'.format(
-            base_url=domain,
-            user=self._username,
-        ) for domain in self.allowed_domains]
+        self.allowed_domains = [self.settings['HABR_DOMAIN']]
+        self.start_urls = [
+            url.format(base_url=self.settings['HABR_DOMAIN'], user=self._username) for url in [
+                'https://{base_url}/ru/users/{user}/bookmarks/articles/',
+                'https://{base_url}/ru/users/{user}/bookmarks/news/',
+            ]
+        ]
         for requests in super(FavoritesSpider, self).start_requests():
             yield requests
 
-    def parse(self, response):
+    def parse(self, response, **kwargs):
         if response.status == 404:
             msg = 'There is no such user.'
             self.logger.error(msg)
             raise CloseSpider(msg)
 
-        sel = Selector(response)
+        yield from response.follow_all(response.css('a#pagination-next-page'), self.parse)
 
-        next_urls = sel.xpath('//a[@id="next_page"]/@href').extract()
-        for url in next_urls:
-            yield Request(response.urljoin(url), self.parse)
-
-        posts = sel.xpath(self._gen_query_with_contains('//div[{}]', 'post'))
+        posts = response.css('article.tm-articles-list__item')
         for post in posts:
-            l = FavoriteItemLoader(selector=post)
+            l = FavoriteItemLoader(selector=post, response=response)
 
             l.add_xpath('id_', '@id')
-            if post.xpath('./section[@class="article article_preview"]'):
-                l.add_xpath('ref', './/a[@class="megapost-head__title-link"]/@href')
-                l.add_xpath('title', './/a[@class="megapost-head__title-link"]/text()')
-                l.add_xpath('datetime', './/div[@class="megapost-head__meta "]//li[1]/text()')
-                l.add_xpath('author', './/a[@class="megapost-cover__blog-link"]/text()')
-            else:
-                l.add_xpath('ref', './/a[@class="post__title_link"]/@href')
-                l.add_xpath('title', './/a[@class="post__title_link"]/text()')
-                l.add_xpath('datetime', './/span[@class="post__time_published"]/text()')
-                l.add_xpath('author', './/a[@class="post-author__link"]', re='@(\w+)')
-            l.add_xpath('rating', self._gen_query_with_contains('.//span[{}]/text()', 'js-score'))
-            l.add_xpath('rating_all', self._gen_query_with_contains('.//span[{}]/@title', 'js-score'))
-            l.add_xpath('rating_up', self._gen_query_with_contains('.//span[{}]/@title', 'js-score'))
-            l.add_xpath('rating_down', self._gen_query_with_contains('.//span[{}]/@title', 'js-score'))
-            l.add_xpath('views', './/div[@class="views-count_post"]/text()')
-            l.add_xpath('count', self._gen_query_with_contains('.//span[{}]/text()', 'js-favs_count'))
-            l.add_xpath('comments', self._gen_query_with_contains('.//div[{}]/a/text()', 'post-comments'))
+
+            l.add_css('ref', 'a.tm-title__link::attr(href)')
+            l.add_css('title', 'a.tm-title__link span::text')
+            l.add_css('author', 'a.tm-user-info__username::text')
+            l.add_xpath('datetime', '//time/@datetime')
+
+            l.add_css('rating', '.tm-votes-meter__value_rating::text')
+            l.add_css('rating_all', '.tm-votes-meter__value_rating::attr(title)')
+            l.add_css('rating_up', '.tm-votes-meter__value_rating::attr(title)')
+            l.add_css('rating_down', '.tm-votes-meter__value_rating::attr(title)')
+            l.add_css('views', '.tm-icon-counter__value::text')
+            l.add_css('count', '.bookmarks-button__counter::text')
+            l.add_css('comments', '.tm-article-comments-counter-link__value::text')
 
             yield l.load_item()
-
-    @staticmethod
-    def _gen_query_with_contains(query, klass):
-        query_contains = 'contains(concat(" ", @class, " "), " {} ")'.format(klass)
-        return query.format(query_contains)

@@ -12,4 +12,4 @@ ITEM_PIPELINES = {
 SPIDER_MODULES = ['habra_favorites.spiders']
 
 # Project settings
-HABRA_FAVORITES_DOMAINS = ['habrahabr.ru', 'geektimes.ru']
+HABR_DOMAIN = 'habr.com'

@@ -30,7 +30,7 @@ class FavoritesSpider(Spider):
             self.logger.error(msg)
             raise CloseSpider(msg)
 
-        yield from response.follow_all(response.css('a#pagination-next-page'), self.parse)
+        yield from response.follow_all(response.css('[data-test-id=pagination-next-page]'), self.parse)
 
         posts = response.css('article.tm-articles-list__item')
         for post in posts:
